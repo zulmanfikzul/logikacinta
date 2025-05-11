@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Logika Cinta</title>
+    <style>
+      body {
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+        background: linear-gradient(to right, #ffdde1, #ee9ca7);
+        padding: 50px;
+        display: flex;
+        justify-content: center;
+        align-items: flex-start;
+        min-height: 100vh;
+      }
+
+      .container {
+        background-color: #fff;
+        padding: 30px;
+        border-radius: 15px;
+        box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
+        max-width: 400px;
+        width: 100%;
+      }
+
+      h2 {
+        text-align: center;
+        color: #d6336c;
+        margin-bottom: 20px;
+      }
+
+      label {
+        font-weight: 500;
+        display: block;
+        margin-bottom: 5px;
+        margin-top: 15px;
+        color: #333;
+      }
+
+      input[type="text"],
+      select {
+        width: 100%;
+        padding: 10px;
+        border-radius: 8px;
+        border: 1px solid #ccc;
+        margin-top: 5px;
+      }
+
+      button {
+        margin-top: 25px;
+        width: 100%;
+        background-color: #d6336c;
+        color: white;
+        padding: 12px;
+        border: none;
+        border-radius: 10px;
+        font-size: 16px;
+        cursor: pointer;
+        transition: background 0.3s ease;
+      }
+
+      button:hover {
+        background-color: #c82354;
+      }
+
+      .result {
+        margin-top: 25px;
+        font-weight: bold;
+        white-space: pre-line;
+        background-color: #ffe3ec;
+        padding: 15px;
+        border-radius: 10px;
+        border-left: 5px solid #d6336c;
+        color: #5c0011;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <h2>Logika Cinta</h2>
+
+      <label>Nama Kamu:</label>
+      <input type="text" id="kamu" />
+
+      <label>Nama yang Suka Kamu:</label>
+      <input type="text" id="sukaKamu" />
+
+      <label>Nama yang Kamu Suka:</label>
+      <input type="text" id="kamuSuka" />
+
+      <label>Apakah Kamu Mau dengan yang Suka Kamu?</label>
+      <select id="mauSukaKamu">
+        <option value="tidak">Tidak</option>
+        <option value="ya">Ya</option>
+      </select>
+
+      <label>Apakah Kamu Mau dengan yang Kamu Suka?</label>
+      <select id="mauKamuSuka">
+        <option value="tidak">Tidak</option>
+        <option value="ya">Ya</option>
+      </select>
+
+      <button onclick="cekLogika()">Cek Hasil</button>
+
+      <div class="result" id="hasil"></div>
+    </div>
+
+    <script>
+      function cekLogika() {
+        const kamu = document.getElementById("kamu").value;
+        const sukaKamu = document.getElementById("sukaKamu").value;
+        const kamuSuka = document.getElementById("kamuSuka").value;
+        const mauSukaKamu = document.getElementById("mauSukaKamu").value;
+        const mauKamuSuka = document.getElementById("mauKamuSuka").value;
+
+        let hasil = "";
+
+        if (mauSukaKamu === "tidak") {
+          hasil += `${sukaKamu} suka ${kamu}, tapi ${kamu} tidak mau.\n`;
+        } else {
+          hasil += `${sukaKamu} suka ${kamu}, dan ${kamu} juga mau.\n`;
+        }
+
+        if (mauKamuSuka === "tidak") {
+          hasil += `${kamu} suka ${kamuSuka}, tapi ${kamuSuka} tidak mau.\n`;
+        } else {
+          hasil += `${kamu} suka ${kamuSuka}, dan ${kamuSuka} juga mau.\n`;
+        }
+
+        if (mauSukaKamu === "tidak" && mauKamuSuka === "tidak") {
+          hasil += `\nCinta segitiga penuh kebingungan. Cuman begitumi ${kamu} Harus tetap tegar dan kamu harus memilih antara ${kamuSuka} dan ${sukaKamu} atau kamu tidak memilih keduanya   .`;
+        }
+
+        if (mauSukaKamu === "ya" && mauKamuSuka === "ya") {
+          hasil += `\n Jangan gengsi lah ${kamu}, Minimal pilih salah satunya. jangan jadikan cowo sebagai bahan gabutan atau percobaan. ingat laki-laki jahat berasal dari orang baik yang tersakiti.`;
+        }
+
+        document.getElementById("hasil").innerText = hasil;
+      }
+    </script>
+  </body>
+</html>
